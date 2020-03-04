@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    je suis le tritre des semmestesqds
+
+{% endblock %}
+
+{% block body %}
+    {% for semestre in semestres %}
+        <article>
+        <h1> Semestre numero {{ semestre.numeroSemestre }}</h1>
+        <div>
+            <ul>
+            {% for cour in semestre.cours %}
+               <li> <a href="{{ path('cour_show',{id:cour.id}) }}"> {{cour.nom}} </a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        </article>
+    {% endfor %}
+
+{% endblock %}
+
+

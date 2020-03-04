@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Page d'accueil
+{% endblock %}
+
+{% block body %}
+    {% for cour in cours %}
+    <article>
+        <h2> Nom du cours : {{ cour.nom }}</h2>
+        <div> Semestre n°{{ cour.semestre.numeroSemestre }}</div>
+        <a href="{{ path('cour_show',{id:cour.id}) }}"> Description </a>
+
+
+    </article>
+    {% endfor %}
+{% endblock %}
+

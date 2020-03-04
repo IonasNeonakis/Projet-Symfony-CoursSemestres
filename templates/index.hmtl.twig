@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Bienvenu sur mon site
+{% endblock %}
+
+{% block body %}
+    <ul>
+        <li><a href="{{ path('accueilCours') }}"> Les cours</a> </li>
+        <li><a href="{{ path('accueilSemestres') }}"> Les Semestres</a> </li>
+
+
+    </ul>
+
+{% endblock %}
