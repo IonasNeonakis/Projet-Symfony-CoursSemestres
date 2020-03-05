@@ -5,14 +5,20 @@ Page d'accueil
 {% endblock %}
 
 {% block body %}
-    {% for cour in cours %}
-    <article>
-        <h2> Nom du cours : {{ cour.nom }}</h2>
-        <div> Semestre n°{{ cour.semestre.numeroSemestre }}</div>
-        <a href="{{ path('cour_show',{id:cour.id}) }}"> Description </a>
-
-
-    </article>
-    {% endfor %}
+    <div class="row">
+        {% for cour in cours %}
+        <div class="card" style="width: 16rem; margin-right: 1rem; margin-top: 1rem;">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ cour.nom }}
+                </h5>
+                <p class="card-text">Semestre n°{{ cour.semestre.numeroSemestre }} </p>
+            </div>
+                <div class="card-footer bg-transparent" style="margin-left: auto; margin-right: auto;">
+                    <a class="btn btn-primary"  href="{{ path('cour_show',{id:cour.id}) }}"> Infos </a>
+                </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 

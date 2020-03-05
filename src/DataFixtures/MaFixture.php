@@ -17,7 +17,7 @@ class MaFixture extends Fixture
         for ($i=0; $i<6;$i++){
             $semestres[$i] = new Semestre();
             $semestres[$i]
-                ->setNomFormation($faker->text)
+                ->setNomFormation($faker->text(5))
                 ->setNumeroSemestre($i+1);
             $manager->persist($semestres[$i]);
         }
@@ -27,7 +27,7 @@ class MaFixture extends Fixture
             $cours[$i] = new Cours();
             $cours[$i]
                 ->setSemestre($semestres[$i%6])
-                ->setNom($faker->text)
+                ->setNom($faker->text(10))
                 ->setDescription($faker->paragraph);
             $manager->persist($cours[$i]);
         }

@@ -1,24 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    je suis le tritre des semmestesqds
-
+    Semestres
 {% endblock %}
 
 {% block body %}
+<div class="row">
     {% for semestre in semestres %}
-        <article>
-        <h1> Semestre numero {{ semestre.numeroSemestre }}</h1>
-        <div>
-            <ul>
-            {% for cour in semestre.cours %}
-               <li> <a href="{{ path('cour_show',{id:cour.id}) }}"> {{cour.nom}} </a></li>
-            {% endfor %}
-            </ul>
-        </div>
-        </article>
-    {% endfor %}
+        <div class="card" style="width: 21rem; margin-right: 2rem; margin-top: 1rem;">
+            <div class="card body">
+                <h3 class="card-title">Semestre numero {{ semestre.numeroSemestre }}, {{ semestre.nomFormation }}</h3>
 
+                <div class="list-group">
+                    {% for cour in semestre.cours %}
+                        <a class="list-group-item list-group-item-action" href="{{ path('cour_show',{id:cour.id}) }}"> {{cour.nom}} </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
 
 
