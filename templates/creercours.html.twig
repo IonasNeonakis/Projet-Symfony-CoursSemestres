@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Création d'un cours
+{% endblock %}
+
+{% block body %}
+    {{ form_start(formCours) }}
+    {{ form_widget(formCours) }}
+    <button type="submit" class="btn btn-success">Enrengister</button>
+
+    {{ form_end(formCours) }}
+{% endblock %}

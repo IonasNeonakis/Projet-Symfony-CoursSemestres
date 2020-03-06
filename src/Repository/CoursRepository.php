@@ -20,7 +20,7 @@ class CoursRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Cours[] Returns an array of Cours objects
+    //  * @return cours[] Returns an array of cours objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class CoursRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Cours
+    public function findOneBySomeField($value): ?cours
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')
