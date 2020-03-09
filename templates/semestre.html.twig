@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ semestre.nomFormation }}
+{% endblock %}
+
+
+{% block body %}
+
+    <h2>{{ semestre.nomFormation }}</h2>
+    <span>
+        Semestre numero
+        {{ semestre.numeroSemestre }}
+    </span>
+    <h1>Voici la liste des cours</h1>
+    {% for cour in semestre.cours %}
+        <p>
+        {{ cour.nom }}
+        </p>
+    {% endfor %}
+
+    <a class="btn btn-primary" href="{{ path('edit_semestre',{id:semestre.id}) }}"> Edit semestre</a>
+    <a class="btn btn-info" href="{{ path('accueilSemestres') }}">Retour aux semestres</a>
+
+{% endblock %}
+
+

@@ -1,13 +1,25 @@
 {% extends 'base.html.twig' %}
+{% form_theme formCours 'bootstrap_4_layout.html.twig' %}
 
 {% block title %}
     Création d'un cours
 {% endblock %}
 
 {% block body %}
-    {{ form_start(formCours) }}
-    {{ form_widget(formCours) }}
-    <button type="submit" class="btn btn-success">Enrengister</button>
 
+    {{ form_start(formCours) }}
+    <fieldset>
+        <legend>Modifier un cours</legend>
+    {{ form_row(formCours.nom, {'attr' : {'placeholder' : "Nom du cours"}})}}
+    {{ form_row(formCours.description, {'attr' : {'placeholder': "Description du cours"}}) }}
+    {{ form_row(formCours.semestre) }}
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+        <a class="btn btn-secondary" href="{{ path('creer_semestre') }}">Créer un semestre</a>
+
+        <a class="btn btn-info" href="{{ path('accueilCours') }}">Retour aux cours</a>
+
+    </fieldset>
     {{ form_end(formCours) }}
+
+
 {% endblock %}

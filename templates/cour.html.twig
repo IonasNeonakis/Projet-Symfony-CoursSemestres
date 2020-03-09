@@ -6,9 +6,16 @@
 
 
 {% block body %}
-    {{ cour.description }}
 
-    <a href="{{ path('creer_cours') }}"> crrer cours</a>
+    <h2>{{ cour.nom }}</h2>
+    <span>
+        {{ cour.description }}
+    </span>
+    <p>Semestre {{ cour.semestre.numeroSemestre }}</p>
+
+    <a class="btn btn-primary" href="{{ path('edit_cours',{id:cour.id}) }}"> Edit cours</a>
+    <a class="btn btn-info" href="{{ path('accueilCours') }}">Retour aux cours</a>
+
 {% endblock %}
 
 

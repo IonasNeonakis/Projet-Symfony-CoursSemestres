@@ -4,8 +4,14 @@
     Semestres
 {% endblock %}
 
+
+
 {% block body %}
-<div class="row">
+    <div style="margin-top: 1rem ;display: flex ; justify-content: center;" class="alert alert-primary">
+    <a class="btn btn_success" href="{{ path('creer_semestre') }}"> Creer Semestre</a>
+    </div>
+    <div class="row">
+
     {% for semestre in semestres %}
         <div class="card" style="width: 21rem; margin-right: 2rem; margin-top: 1rem;">
             <div class="card body">
@@ -17,6 +23,7 @@
                     {% endfor %}
                 </div>
             </div>
+            <a class="btn btn-primary" href="{{ path('edit_semestre',{id:semestre.id}) }}"> Edit</a>
         </div>
     {% endfor %}
 </div>
