@@ -31,15 +31,15 @@ class CoursController extends AbstractController
      * @Route("/cours/{id}/edit", name="edit_cours")
      */
     public  function creerCours(Cours $cours = null ,Request $request, EntityManagerInterface $manager){
-
+        $creer=false;
         if(!$cours){
+            $creer=true;
             $cours = new Cours();
         }
 
-        $se= new Semestre();
         $form = $this->createFormBuilder($cours)
-            ->add('nom')
-            ->add('description', TextareaType::class)
+            ->add('nom', TextType::class,['required'=>true])
+            ->add('description', TextareaType::class, ['required'=>true])
             ->add('semestre', EntityType::class, [
                 'class'=>Semestre::class,
                 'choice_label'=> 'numeroSemestre'])
@@ -53,7 +53,7 @@ class CoursController extends AbstractController
             return $this->redirectToRoute('cour_show',['id'=>$cours->getId()]);
         }
 
-       return $this->render("creercours.html.twig", ['formCours'=> $form->createView()]);
+       return $this->render("creercours.html.twig", ['formCours'=> $form->createView(),'creer'=>$creer]);
     }
 
     /**

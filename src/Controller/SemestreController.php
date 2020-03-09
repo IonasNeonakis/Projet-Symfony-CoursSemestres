@@ -9,6 +9,8 @@ use App\Entity\Semestre;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,15 +33,15 @@ class SemestreController extends AbstractController
      */
     public function creerSemestre(Semestre $semestre = null, Request $request, EntityManagerInterface $manager)
     {
-
+        $creer=false;
         if (!$semestre) {
+            $creer=true;
             $semestre = new Semestre();
         }
 
-        $se = new Semestre();
         $form = $this->createFormBuilder($semestre)
-            ->add('numeroSemestre')
-            ->add('nomFormation')
+            ->add('numeroSemestre', NumberType::class,['required'=>true])
+            ->add('nomFormation', TextType::class,['required'=>true])
             ->getForm();
         $form->handleRequest($request);
 
@@ -50,7 +52,7 @@ class SemestreController extends AbstractController
             return $this->redirectToRoute('semestre_show', ['id' => $semestre->getId()]);
         }
 
-        return $this->render("creersemestre.html.twig", ['formSemestre' => $form->createView()]);
+        return $this->render("creersemestre.html.twig", ['formSemestre' => $form->createView(),'creer'=>$creer]);
     }
 
     /**

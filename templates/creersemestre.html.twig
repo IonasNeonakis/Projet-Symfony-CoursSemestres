@@ -2,7 +2,11 @@
 {% form_theme formSemestre 'bootstrap_4_layout.html.twig' %}
 
 {% block title %}
-    Création d'un Semestre
+    {% if creer %}
+        Créer un Semestre
+    {% else %}
+        Modifier un Semestre
+    {% endif %}
 {% endblock %}
 
 {% block body %}
@@ -10,7 +14,14 @@
     {{ form_start(formSemestre) }}
     {{ form_row(formSemestre.numeroSemestre, {'attr' : {'placeholder' : "Numero du semestre"}})}}
     {{ form_row(formSemestre.nomFormation, {'attr' : {'placeholder': "Nom de la formation"}}) }}
-    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <button type="submit" class="btn btn-success">
+        {% if creer %}
+            Créer un Semestre
+        {% else %}
+            Modifier un Semestre
+        {% endif %}
+
+    </button>
     <a class="btn btn-secondary" href="{{ path('creer_cours') }}">Créer un cours</a>
     <a class="btn btn-info" href="{{ path('accueilSemestres') }}">Retour aux semestres</a>
 

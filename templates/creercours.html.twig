@@ -2,19 +2,35 @@
 {% form_theme formCours 'bootstrap_4_layout.html.twig' %}
 
 {% block title %}
-    Création d'un cours
+    {% if creer %}
+    Créer un Cours
+    {% else %}
+    Modifier Cours
+    {% endif %}
+
 {% endblock %}
 
 {% block body %}
 
     {{ form_start(formCours) }}
     <fieldset>
-        <legend>Modifier un cours</legend>
+        <legend>
+            {% if creer %}
+            Créer un cours
+            {% else %}
+            Modifier un cours
+            {% endif %}
+        </legend>
     {{ form_row(formCours.nom, {'attr' : {'placeholder' : "Nom du cours"}})}}
     {{ form_row(formCours.description, {'attr' : {'placeholder': "Description du cours"}}) }}
     {{ form_row(formCours.semestre) }}
-    <button type="submit" class="btn btn-success">Enregistrer</button>
-        <a class="btn btn-secondary" href="{{ path('creer_semestre') }}">Créer un semestre</a>
+    <button type="submit" class="btn btn-success">
+        {% if creer %}
+            Créer
+        {% else %}
+            Modifier
+        {% endif %}</button>
+        <a class="btn btn-secondary" href="{{ path('creer_semestre') }}">Creer Semestre</a>
 
         <a class="btn btn-info" href="{{ path('accueilCours') }}">Retour aux cours</a>
 
