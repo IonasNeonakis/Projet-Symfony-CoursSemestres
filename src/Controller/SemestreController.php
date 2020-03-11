@@ -65,4 +65,23 @@ class SemestreController extends AbstractController
         return $this->render('semestre.html.twig' , ['semestre' => $semestre]);
     }
 
+    /**
+     * @Route("/Semestre/{id}/delete", name="delete_semestre")
+     */
+    public function deleteSemestre($id,  EntityManagerInterface $manager){
+        $repo =  $this->getDoctrine()->getRepository(Semestre::class);
+        $sem = $repo->find($id);
+
+        foreach ($sem->getCours() as $cour){
+           $manager->remove($cour);
+        }
+
+
+        $manager->remove($sem);
+        $manager->flush();
+
+        return $this->accueilSemestres();
+
+    }
+
 }

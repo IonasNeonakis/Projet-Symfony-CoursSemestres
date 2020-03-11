@@ -22,6 +22,14 @@
     <a class="btn btn-primary" href="{{ path('edit_semestre',{id:semestre.id}) }}"> Edit semestre</a>
     <a class="btn btn-info" href="{{ path('accueilSemestres') }}">Retour aux semestres</a>
 
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        $("#sem").addClass("active");
+        </script>
 {% endblock %}
 
 

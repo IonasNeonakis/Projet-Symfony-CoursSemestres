@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Cours;
 use App\Entity\Semestre;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,6 +65,21 @@ class CoursController extends AbstractController
         $cour = $repo->find($id);
 
         return $this->render('cour.html.twig' , ['cour' => $cour]);
+    }
+
+    /**
+     * @Route("/cours/{id}/delete", name="delete_cours")
+     */
+    public function deleteCours($id,  EntityManagerInterface $manager){
+        $repo =  $this->getDoctrine()->getRepository(Cours::class);
+        $cours = $repo->find($id);
+
+
+        $manager->remove($cours);
+        $manager->flush();
+
+        return $this->accueilCours();
+
     }
 
 
