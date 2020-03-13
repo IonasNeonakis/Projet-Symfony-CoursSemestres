@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Semestres
+{% endblock %}
+
+
+
+{% block body %}
+    <div style="margin-top: 1rem ;display: flex ; justify-content: center;">
+    <a class="btn btn-success" style="width: -moz-available" href="{{ path('creer_semestre') }}"> Creer Semestre</a>
+    </div>
+
+    <div id="myDiv" class="row" style="justify-content: center;" >
+
+    {% for semestre in semestres %}
+        <div class="card" style="margin: 1em; max-width: 30%;">
+            <div class="card-body">
+                <h3 class="card-title">Semestre numero {{ semestre.numeroSemestre }}, {{ semestre.nomFormation }}</h3>
+
+                <div class="list-group">
+                    {% for cour in semestre.cours %}
+                        <a class="list-group-item list-group-item-action" href="{{ path('cour_show',{id:cour.id}) }}"> {{cour.nom}} </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-footer bg-transparent">
+            <a class="btn btn-primary" style="display: flex; justify-content: center;" href="{{ path('edit_semestre',{id:semestre.id}) }}"> Edit </a>
+            <a class="btn btn-danger" style="display: flex; justify-content: center;" href="{{ path('delete_semestre',{id:semestre.id}) }}"> Supprimer </a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myDiv .card .card-body").filter(function() {
+                    $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <script>
+        $("#sem").addClass("active");
+    </script>
+{% endblock %}
+
+

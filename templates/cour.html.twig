@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ cour.nom }}
+{% endblock %}
+
+
+{% block body %}
+
+    <h2>{{ cour.nom }}</h2>
+    <span>
+        {% apply markdown_to_html %}
+            {{ cour.description }}
+        {% endapply %}
+    </span>
+    <p>Semestre {{ cour.semestre.numeroSemestre }}</p>
+
+    <a class="btn btn-primary" href="{{ path('edit_cours',{id:cour.id}) }}"> Edit cours</a>
+    <a class="btn btn-danger" href="{{ path('delete_cours',{id:cour.id}) }}"> Supprimer </a>
+    <a class="btn btn-info" href="{{ path('accueilCours') }}">Retour aux cours</a>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        $("#cours").addClass("active");
+    </script>
+{% endblock %}
+
+
