@@ -4,11 +4,10 @@
 namespace App\Controller;
 
 
-use App\Entity\Cours;
 use App\Entity\Semestre;
+use App\Repository\SemestreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,8 +57,7 @@ class SemestreController extends AbstractController
     /**
      * @Route("Semestre/{id}", name="semestre_show")
      */
-    public function show($id){
-        $repo=$this->getDoctrine()->getRepository(Semestre::class);
+    public function show($id, SemestreRepository $repo){
         $semestre = $repo->find($id);
 
         return $this->render('semestre.html.twig' , ['semestre' => $semestre]);
@@ -68,14 +66,12 @@ class SemestreController extends AbstractController
     /**
      * @Route("/Semestre/{id}/delete", name="delete_semestre")
      */
-    public function deleteSemestre($id,  EntityManagerInterface $manager){
-        $repo =  $this->getDoctrine()->getRepository(Semestre::class);
+    public function deleteSemestre($id,SemestreRepository $repo,  EntityManagerInterface $manager){
         $sem = $repo->find($id);
 
         foreach ($sem->getCours() as $cour){
            $manager->remove($cour);
         }
-
 
         $manager->remove($sem);
         $manager->flush();

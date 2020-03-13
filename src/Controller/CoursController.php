@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Cours;
 use App\Entity\Semestre;
+use App\Repository\CoursRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -21,8 +22,7 @@ class CoursController extends AbstractController
     /**
      * @Route("/cours", name="accueilCours")
      */
-    public function accueilCours(){
-        $repo =$this->getDoctrine()->getRepository(Cours::class);
+    public function accueilCours(CoursRepository $repo){
         $cours=$repo->findAll();
         return $this->render('accueuilcours.html.twig', ['cours'=>$cours]);
     }
@@ -60,8 +60,7 @@ class CoursController extends AbstractController
     /**
      * @Route("/cours/{id}", name="cour_show")
      */
-    public function show($id){
-        $repo=$this->getDoctrine()->getRepository(Cours::class);
+    public function show($id, CoursRepository $repo){
         $cour = $repo->find($id);
 
         return $this->render('cour.html.twig' , ['cour' => $cour]);
