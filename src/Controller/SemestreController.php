@@ -19,9 +19,8 @@ class SemestreController extends AbstractController
     /**
      * @Route("/Semestre",name="accueilSemestres")
      */
-    public function accueilSemestres()
+    public function accueilSemestres(SemestreRepository $repo)
     {
-        $repo = $this->getDoctrine()->getRepository(Semestre::class);
         $semestres = $repo->findAll();
         return $this->render('accueuilsemestres.html.twig', ['semestres' => $semestres]);
     }
@@ -76,7 +75,7 @@ class SemestreController extends AbstractController
         $manager->remove($sem);
         $manager->flush();
 
-        return $this->accueilSemestres();
+        return $this->accueilSemestres($repo);
 
     }
 
