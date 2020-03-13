@@ -8,6 +8,7 @@ use App\Entity\Cours;
 use App\Entity\Semestre;
 use App\Repository\CoursRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -22,7 +23,9 @@ class CoursController extends AbstractController
      * @Route("/cours", name="accueilCours")
      */
     public function accueilCours(CoursRepository $repo){
-        $cours=$repo->findAll();
+        if(!$cours=$repo->findAll()){
+            $cours=[];
+        }
         return $this->render('accueuilcours.html.twig', ['cours'=>$cours]);
     }
 
@@ -60,7 +63,9 @@ class CoursController extends AbstractController
      * @Route("/cours/{id}", name="cour_show")
      */
     public function show($id, CoursRepository $repo){
-        $cour = $repo->find($id);
+        if(!$cour = $repo->find($id)){
+            return $this->accueilCours($repo);
+        }
 
         return $this->render('cour.html.twig' , ['cour' => $cour]);
     }
@@ -69,7 +74,9 @@ class CoursController extends AbstractController
      * @Route("/cours/{id}/delete", name="delete_cours")
      */
     public function deleteCours($id,CoursRepository $repo,  EntityManagerInterface $manager){
-        $cours = $repo->find($id);
+        if(!$cours = $repo->find($id)){
+            return $this->accueilCours($repo);
+        }
 
         $manager->remove($cours);
         $manager->flush();

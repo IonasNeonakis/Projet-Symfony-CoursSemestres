@@ -16,3 +16,15 @@ __Il existe 9 branches au total__ :
 * **Master pour le projet fini :  Projet FINI**
 
 Pour la réalisation du projet on a chacun fait le projet dans notre coin puis on a décidés de garder celui-ci
+
+Les commandes  :
+
+installer un certificat:
+
+```symfony server:ca:install```
+
+installer le logger:
+
+```
+composer require logger
+```

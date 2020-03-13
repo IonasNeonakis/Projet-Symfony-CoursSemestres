@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Semestre;
 use App\Repository\SemestreRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,7 +22,9 @@ class SemestreController extends AbstractController
      */
     public function accueilSemestres(SemestreRepository $repo)
     {
-        $semestres = $repo->findAll();
+        if(!$semestres = $repo->findAll()){
+            $semestres=[];
+        }
         return $this->render('accueuilsemestres.html.twig', ['semestres' => $semestres]);
     }
 
@@ -57,7 +60,9 @@ class SemestreController extends AbstractController
      * @Route("Semestre/{id}", name="semestre_show")
      */
     public function show($id, SemestreRepository $repo){
-        $semestre = $repo->find($id);
+        if(!$semestre = $repo->find($id)){
+            return $this->accueilSemestres($repo);
+        };
 
         return $this->render('semestre.html.twig' , ['semestre' => $semestre]);
     }
@@ -66,7 +71,9 @@ class SemestreController extends AbstractController
      * @Route("/Semestre/{id}/delete", name="delete_semestre")
      */
     public function deleteSemestre($id,SemestreRepository $repo,  EntityManagerInterface $manager){
-        $sem = $repo->find($id);
+        if(!$sem = $repo->find($id)){
+            return $this->accueilSemestres($repo);
+        }
 
         foreach ($sem->getCours() as $cour){
            $manager->remove($cour);
