@@ -13,18 +13,18 @@ __Il existe 9 branches au total__ :
 * q7 pour la question 7 : Ajout la modification, creation et suppresion des cours et semestres
 * q8 pour la question 8 : Modification des descirptions des cours en markdown
 * q9 pour la question 9 : Ajout des services
-* **Master pour le projet fini :  Projet FINI**
+* **Master pour le projet fini**
 
 Pour la réalisation du projet on a chacun fait le projet dans notre coin puis on a décidés de garder celui-ci
 
 Les commandes  :
 
-installer un certificat:
 
-```symfony server:ca:install```
+```composer install```
 
 installer le logger:
 
-```
-composer require logger
-```
+```symfony server:ca:install```
+
+```symfony server:start```
+

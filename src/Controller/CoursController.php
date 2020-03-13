@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class CoursController extends AbstractController
 {
@@ -45,7 +47,8 @@ class CoursController extends AbstractController
             ->add('description', TextareaType::class, ['required'=>true])
             ->add('semestre', EntityType::class, [
                 'class'=>Semestre::class,
-                'choice_label'=> 'numeroSemestre'])
+                'choice_label'=> 'numeroSemestre',
+                'constraints'=> new NotNull(['message'=>"Il n'existe aucun semestre, créés-en un d'abord"])])
             ->getForm();
         $form->handleRequest($request);
 
