@@ -19,12 +19,18 @@ Pour la réalisation du projet on a chacun fait le projet dans notre coin puis o
 
 Les commandes  :
 
-
+Installer les dependances:
 ```composer install```
 
-installer le logger:
+Créer la base de données:
+```php bin/console doctrine:migrations:migrate```
 
+Lancer les fixtures:
+```php bin/console doctrine:fixtures:load```
+
+installer le certificat:
 ```symfony server:ca:install```
 
+Lancer le serveur:
 ```symfony server:start```
 
