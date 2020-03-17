@@ -13,7 +13,7 @@ class AppController extends AbstractController
      * @Route("/", name="index")
      */
     public function index(){
-        return $this->render('index.hmtl.twig');
+        return $this->render('index.html.twig');
     }
 
 }
