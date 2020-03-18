@@ -28,7 +28,7 @@ class CoursController extends AbstractController
         if(!$cours=$repo->findAll()){
             $cours=[];
         }
-        return $this->render('accueuilcours.html.twig', ['cours'=>$cours]);
+        return $this->render('cours/accueil_cours.html.twig', ['cours'=>$cours]);
     }
 
     /**
@@ -59,7 +59,7 @@ class CoursController extends AbstractController
             return $this->redirectToRoute('cour_show',['id'=>$cours->getId()]);
         }
 
-       return $this->render("creercours.html.twig", ['formCours'=> $form->createView(),'creer'=>$creer]);
+       return $this->render("cours/creer_cours.html.twig", ['formCours'=> $form->createView(),'creer'=>$creer]);
     }
 
     /**
@@ -70,7 +70,7 @@ class CoursController extends AbstractController
             return $this->accueilCours($repo);
         }
 
-        return $this->render('cour.html.twig' , ['cour' => $cour]);
+        return $this->render('cours/cours.html.twig' , ['cour' => $cour]);
     }
 
     /**

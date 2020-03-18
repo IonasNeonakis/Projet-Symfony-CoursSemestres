@@ -6,42 +6,37 @@ Cours
 
 {% block body %}
 
-    <div id="myDiv" class="row" style="justify-content: center">
-
-        <div class="card" style="margin: 1em; width: 10em;">
+    <div id="myDiv" class="row cards">
+        <div class="card pres-card">
             <div class="card-body">
                 <h5 class="card-title">
                     Créer un cours
                 </h5>
             </div>
 
-            <div class="card-footer bg-transparent" style="margin-left: auto; margin-right: auto;">
+            <div class="card-footer bg-transparent creer_bouton">
                 <a class="btn btn-success"  href="{{ path('creer_cours') }}"> Creer </a>
             </div>
         </div>
 
-
         {% for cour in cours %}
-            <div class="card" style="margin: 1em; width: 10em;">
+            <div class="card">
             <div class="card-body">
                 <h5 class="card-title">
                     {{ cour.nom }}
                 </h5>
                 <p class="card-text">Semestre n°{{ cour.semestre.numeroSemestre }} </p>
             </div>
-                <div class="card-footer bg-transparent" style="margin-left: auto; margin-right: auto;">
-                    <a class="btn btn-primary" style="display: flex; justify-content: center;" href="{{ path('cour_show',{id:cour.id}) }}"> Infos </a>
-                    <a class="btn btn-danger" style="display: flex; justify-content: center;" href="{{ path('delete_cours',{id:cour.id}) }}"> Supprimer </a>
+                <div class="card-footer bg-transparent">
+                    <a class="btn btn-primary" href="{{ path('cour_show',{id:cour.id}) }}"> Infos </a>
+                    <a class="btn btn-danger" href="{{ path('delete_cours',{id:cour.id}) }}"> Supprimer </a>
                 </div>
-
         </div>
         {% endfor %}
     </div>
 {% endblock %}
 
-
 {% block javascripts %}
-
     <script>
         $(document).ready(function(){
             $("#myInput").on("keyup", function() {
@@ -50,11 +45,8 @@ Cours
                     $(this).parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
+            $("#cours").addClass("active");
         });
-
-    </script>
-    <script>
-        $("#cours").addClass("active");
     </script>
 {% endblock %}
 

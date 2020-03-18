@@ -18,19 +18,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class SemestreController extends AbstractController
 {
     /**
-     * @Route("/Semestre",name="accueilSemestres")
+     * @Route("/semestre",name="accueilSemestres")
      */
     public function accueilSemestres(SemestreRepository $repo)
     {
         if(!$semestres = $repo->findAll()){
             $semestres=[];
         }
-        return $this->render('accueuilsemestres.html.twig', ['semestres' => $semestres]);
+        return $this->render('semestre/acceuil_semestres.html.twig', ['semestres' => $semestres]);
     }
 
     /**
-     * @Route("Semestre/creer_semestre", name="creer_semestre")
-     * @Route("Semestre/{id}/edit_semestre", name="edit_semestre")
+     * @Route("semestre/creer_semestre", name="creer_semestre")
+     * @Route("semestre/{id}/edit_semestre", name="edit_semestre")
      */
     public function creerSemestre(Semestre $semestre = null, Request $request, EntityManagerInterface $manager)
     {
@@ -53,22 +53,22 @@ class SemestreController extends AbstractController
             return $this->redirectToRoute('semestre_show', ['id' => $semestre->getId()]);
         }
 
-        return $this->render("creersemestre.html.twig", ['formSemestre' => $form->createView(),'creer'=>$creer]);
+        return $this->render("semestre/creer_semestre.html.twig", ['formSemestre' => $form->createView(),'creer'=>$creer]);
     }
 
     /**
-     * @Route("Semestre/{id}", name="semestre_show")
+     * @Route("semestre/{id}", name="semestre_show")
      */
     public function show($id, SemestreRepository $repo){
         if(!$semestre = $repo->find($id)){
             return $this->accueilSemestres($repo);
         };
 
-        return $this->render('semestre.html.twig' , ['semestre' => $semestre]);
+        return $this->render('semestre/semestre.html.twig' , ['semestre' => $semestre]);
     }
 
     /**
-     * @Route("/Semestre/{id}/delete", name="delete_semestre")
+     * @Route("/semestre/{id}/delete", name="delete_semestre")
      */
     public function deleteSemestre($id,SemestreRepository $repo,  EntityManagerInterface $manager){
         if(!$sem = $repo->find($id)){
