@@ -36,3 +36,17 @@ installer le certificat:
 Lancer le serveur:
 ```symfony server:start```
 
+---------------------------------------
+
+En cas de problème avec ```composer install``` : 
+
+installez php7.4 :
+```sudo apt install php7.4```
+
+Installez l'extension php xml:
+```sudo apt-get install php7.4-xml```
+
+---------------------------------------
+
+En cas de problème avec les drivers sqlite3 tapez :
+sudo apt install ```php7.4-sqlite```
