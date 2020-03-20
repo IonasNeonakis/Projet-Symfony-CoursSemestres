@@ -4,6 +4,8 @@
 - Mahafaly RANDRIAMIARISOA
 - Samir TOULARHMINE
 
+Vous pouvez untiliser la barre de recherche pour chercher les cours et les semestres plus facilement.
+
 __Il existe 9 branches au total__ : 
 * q2 pour la question 2 : Creation des Entités
 * q3 pour la question 3 : Création de la base de données
